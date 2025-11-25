@@ -40,4 +40,19 @@ public class MovieController {
     public String deleteMovie(@PathVariable Integer id) {
         return movieService.deleteById(id);
     }
+
+    @GetMapping("/title/{title}")
+    public List<Movie> getAllMovieByTitle(@PathVariable String title) {
+        return movieService.getAllMovieByTitle(title);
+    }
+
+    @GetMapping("/genre/{genre}")
+    public List<Movie> getAllMovieByGenre(@PathVariable String genre) {
+        return movieService.getAllMovieByGenre(genre);
+    }
+
+    @GetMapping("/rating/{rating}")
+    public List<Movie> getAllMovieByRating(@PathVariable Double rating) {
+        return movieService.getAllMovieByRating(rating);
+    }
 }
