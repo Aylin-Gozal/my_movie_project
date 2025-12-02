@@ -2,8 +2,10 @@ package com.movie.dea.controller;
 
 import com.movie.dea.entity.Movie;
 import com.movie.dea.service.MovieService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -53,6 +55,12 @@ public class MovieController {
 
     @GetMapping("/rating/{rating}")
     public List<Movie> getAllMovieByRating(@PathVariable Double rating) {
-        return movieService.getAllMovieByRating(rating);
+        return movieService.getAllMovieByMinRating(rating);
     }
+
+    @GetMapping("/date/{releaseDate}")
+    public List<Movie> getMovieByDate(@PathVariable LocalDate releaseDate){
+        return movieService.getAllMovieByReleaseDate(releaseDate);
+    }
+
 }
