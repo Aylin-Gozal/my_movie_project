@@ -1,6 +1,7 @@
 package com.movie.dea.entity;
 
 import jakarta.persistence.*;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 

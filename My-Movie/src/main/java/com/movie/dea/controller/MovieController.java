@@ -2,6 +2,7 @@ package com.movie.dea.controller;
 
 import com.movie.dea.entity.Movie;
 import com.movie.dea.service.MovieService;
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,6 +62,15 @@ public class MovieController {
     @GetMapping("/date/{releaseDate}")
     public List<Movie> getMovieByDate(@PathVariable LocalDate releaseDate){
         return movieService.getAllMovieByReleaseDate(releaseDate);
+    }
+
+
+    @GetMapping("/pagination")
+    public Page<Movie> getPagination(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "0") int size
+        ) {
+        return movieService.getMoviesByPage(page, size);
     }
 
 }

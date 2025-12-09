@@ -2,6 +2,9 @@ package com.movie.dea.service;
 
 import com.movie.dea.entity.Movie;
 import com.movie.dea.repository.MovieRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -65,5 +68,11 @@ public class MovieService {
             return "Movie deleted!";
         }
         return "Not found";
+    }
+
+
+    public Page<Movie> getMoviesByPage(@PathVariable int page, @PathVariable int size){
+        Pageable pageable = PageRequest.of(page, size);
+        return movieRepository.findAll(pageable);
     }
 }
