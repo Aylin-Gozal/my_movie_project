@@ -56,7 +56,7 @@ public class MovieService {
                     existing.setGenre(updatedMovie.getGenre());
                     existing.setReleaseDate(updatedMovie.getReleaseDate());
                     existing.setRating(updatedMovie.getRating());
-                    existing.setDuration(updatedMovie.getDuration());
+//                    existing.setDuration(updatedMovie.getDuration());
                     return movieRepository.save(existing);
                 })
                 .orElseThrow(() -> new RuntimeException("No such a movie with following ID: " + id));

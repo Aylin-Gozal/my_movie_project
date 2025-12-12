@@ -15,20 +15,20 @@ public class Movie {
     private String genre;
     private LocalDate releaseDate;
     private Double rating;
-    private String duration;
+    // private String duration;
 
     public Movie() {
 
     }
 
 
-    public Movie(Integer id, String title, String genre, LocalDate releaseDate, Double rating, String duration) {
+    public Movie(Integer id, String title, String genre, LocalDate releaseDate, Double rating) {
         this.id = id;
         this.title = title;
         this.genre = genre;
         this.releaseDate = releaseDate;
         this.rating = rating;
-        this.duration = duration;
+       // this.duration = duration;
     }
 
     public Integer getId() {
@@ -71,11 +71,14 @@ public class Movie {
         this.rating = rating;
     }
 
-    public String getDuration() {
-        return duration;
-    }
+   // public String getDuration() {
+       // return duration;
+   // }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
+   //  public void setDuration(String duration) {
+        // this.duration = duration;
+   // }
+
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
+    private MovieDetails movieDetails;
 }
