@@ -9,7 +9,7 @@ public class MovieDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
-    private Integer duration;  // minutes
+    private Integer duration;  // in minutes
 
     public MovieDetails(){
 
