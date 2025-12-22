@@ -1,6 +1,7 @@
 package com.movie.dea.controller;
 
 
+import com.movie.dea.entity.Movie;
 import com.movie.dea.service.MovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,9 +24,26 @@ public class MoviePageController {
         return "movies/list";
     }
 
-//    @GetMapping("/all")
-//    public List<Movie> getMovies() {
-//        return movieService.getAllMovie();
-//    }
+    //form of adding
+    @GetMapping("/new")
+    public String form(Model model) {
+        model.addAttribute("movie", new Movie());
+        return "movies/new";
+    }
+
+
+    @PostMapping
+    public String save(@ModelAttribute Movie movie) {
+        movieService.createMovie(movie);
+        return "redirect:/movies";
+    }
+
+
+    // form of update
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("movie", movieService.getMovie(id));
+        return "movies/edit";
+    }
 
 }

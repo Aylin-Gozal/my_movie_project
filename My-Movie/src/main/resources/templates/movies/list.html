@@ -2,11 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Movies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
 </head>
 <body>
-<h2>Movies</h2>
+<h1>Movies</h1>
 
-<table border="1">
+
+<a href="/movies/new" class="btn">Add Movie</a>
+<table>
   <tr>
     <th>ID</th>
     <th>Title</th>
@@ -25,11 +30,73 @@
     <td th:text="${movie.releaseDate}"></td>
     <td th:text="${movie.rating}"></td>
     <td th:text="${movie.duration}"></td>
+    <td>
+      <a th:href="@{/movies/{id}/edit(id=${movie.id})}" class="edit">Edit</a>
+    </td>
   </tr>
 </table>
 
 
 
 </body>
-</html>
 
+<style>
+  h1{
+  text-align: center;
+  margin-right: 30px;
+  font-family: 'Funnel-Display', sans-serif;
+  }
+
+  table{
+  width: 550px;
+  height:300px;
+  margin: 80px auto 0 auto;
+  border: 3px solid black;
+  border-radius: 10px;
+  border-spacing: 0;
+  font-family: 'Funnel-Display', sans-serif;
+  }
+
+  td,th{
+  border: 1px solid black;
+  text-align: center;
+  }
+
+  body{
+  background-color: #f2f0e6;
+  }
+
+  .btn{
+    margin-left: 485px;
+    position: relative;
+    top: 70px;
+    justify-content: center;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #999999;
+    color: white;
+    text-decoration: none;
+    font-family: 'Funnel-Display', sans-serif;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #7a7a7a;
+  }
+
+  .edit{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+    transition: 0.3s;
+   }
+
+  .edit:hover{
+  background-color: #006400;
+</style>
+</html>

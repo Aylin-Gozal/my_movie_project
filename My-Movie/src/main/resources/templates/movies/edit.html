@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Movie</title>
+</head>
+<body>
+<h1>Edit Movie</h1>
+
+
+<!--<form th:action="@{/movies/save}" th:object="${movie}" method="post">-->
+<form th:action="@{/movies}" th:object="${movie}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+  <div>
+    Title
+    <input type="text" th:field="*{title}" /> <br>
+  </div>
+
+  <div>
+    Genre
+    <input type="text" th:field="*{genre}" /> <br>
+  </div>
+
+  <div>
+    Release Date
+    <input type="date" th:field="*{releaseDate}" /> <br>
+  </div>
+
+  <div>
+    Rating
+    <input type="number" step="0.1" th:field="*{rating}" /> <br>
+  </div>
+
+  <div>
+    Duration
+    <input type="number" step="1" th:field="*{duration}" /> <br>
+  </div>
+
+  <button href="/movies" class="btn">Back</button>
+  <button type="submit">Save</button>
+</form>
+
+<!--<a href="/movies">Back</a>-->
+
+</body>
+
+
+<style>
+  body{
+     background-color: #f2f0e6;
+     font-family: 'Funnel-Display', sans-serif;
+     text-align: center;
+     }
+
+     input{
+     margin-left: 15px;
+     margin-top: 10px;
+     }
+
+     button{
+     margin-left: 10px;
+     border: none;
+     border-radius: 8px;
+     margin-top: 25px;
+     padding: 10px 30px;
+     background-color: green;
+     color: white;
+     transition: 0.3s;
+     }
+
+     button:hover{
+     background-color: #006400;
+     }
+
+     .btn{
+     margin-right: 10px;
+     border: none;
+     border-radius: 8px;
+     margin-top: 25px;
+     padding: 10px 30px;
+     color: white;
+     background-color: #999999;
+     text-decoration: none;
+     transition: 0.3s;
+     }
+
+     .btn:hover{
+     background-color: #7a7a7a;
+     }
+
+     form{
+     width: 500px;
+     height: auto;
+     padding: 10px;
+     margin: 60px auto;
+     background-color: #e0ddd2;
+     border-radius: 10px;
+     box-shadow: 0;
+     font-size: 18px;
+     }
+
+     form input{
+     display:block;
+     width: 95%;
+     padding: 10px 1px;
+     font-size: 16px;
+     border-radius: 6px;
+     border: 1px solid #ccc;
+     margin-top: 15px;
+     }
+
+</style>
+</html>
