@@ -14,9 +14,11 @@
        Duration <input type="number" step="1" th:field="*{duration}" placeholder="Enter duration*" /> <br>
 
 
-         <button href="/movies" class="btn">Back</button>
+
        <button type="submit">Save</button>
+         <a href="/movies" class="btn">Back</a>
      </form>
+
 </body>
 
 <style>
@@ -32,13 +34,26 @@
     }
 
     button{
-    margin-left: 10px;
+<!--    margin-left: 10px;-->
+<!--    border: none;-->
+<!--    border-radius: 8px;-->
+<!--    margin-top: 25px;-->
+<!--    padding: 10px 30px;-->
+<!--    background-color: green;-->
+<!--    color: white;-->
+<!--    transition: 0.3s;-->
+<!--    -->
+
+    display: inline-block;
+    margin: 25px 10px;
+    padding: 10px 30px;
     border: none;
     border-radius: 8px;
-    margin-top: 25px;
-    padding: 10px 30px;
+    font-size: 16px;
+    cursor: pointer;
     background-color: green;
     color: white;
+    text-decoration: none;
     transition: 0.3s;
     }
 

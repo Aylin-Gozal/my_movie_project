@@ -11,6 +11,21 @@
 
 
 <a href="/movies/new" class="btn">Add Movie</a>
+
+<form method="get" action="/movies">
+  Searh by title:
+  <input type="text" name="title" th:value="${title}" />
+
+  Searh by genre:
+  <input type="text" name="genre" th:value="${genre}" />
+
+  <button type="submit">Search</button>
+  <a href="/movies">Reset</a>
+</form>
+
+
+<br>
+
 <table>
   <tr>
     <th>ID</th>
@@ -31,7 +46,15 @@
     <td th:text="${movie.rating}"></td>
     <td th:text="${movie.duration}"></td>
     <td>
-      <a th:href="@{/movies/{id}/edit(id=${movie.id})}" class="edit">Edit</a>
+      <button th:href="@{/movies/{id}/edit(id=${movie.id})}" class="edit">Edit</button>
+      <form th:action= "@{/movies/{id}/delete(id=${movie.id})}" method="post" style="display:inline">
+        <button  class="delete" type="submit" onclick="myFunction()">Delete</button>
+        <script>
+          function myFunction() {
+            alert("Are you sure you want to delete?");
+          }
+        </script>
+      </form>
     </td>
   </tr>
 </table>
@@ -48,7 +71,7 @@
   }
 
   table{
-  width: 550px;
+  width: 900px;
   height:300px;
   margin: 80px auto 0 auto;
   border: 3px solid black;
@@ -67,7 +90,7 @@
   }
 
   .btn{
-    margin-left: 485px;
+    margin-left: 310px;
     position: relative;
     top: 70px;
     justify-content: center;
@@ -86,14 +109,36 @@
     background-color: #7a7a7a;
   }
 
+  .delete {
+    padding: 10px 15px;
+    background-color: #ff4d4d; /* red for delete */
+    color: white;
+    border: none; /* remove default button border */
+    border-radius: 8px;
+    font-family: 'Funnel-Display', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete:hover {
+    background-color: #cc0000; /* darker red on hover */
+}
+
+
   .edit{
     text-decoration: none;
     display: inline-block;
     padding: 10px 15px;
-    background-color: green;
-    color: white;
-    border-radius: 8px;
+    background-color: #4CAF50;
+    color:white;
+    border: none;
+     border-radius: 8px;
+    font-family: 'Funnel-Display', sans-serif;
+    font-weight: bold;
     transition: 0.3s;
+    cursor: pointer;
+
    }
 
   .edit:hover{

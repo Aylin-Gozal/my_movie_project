@@ -19,8 +19,15 @@ public class MoviePageController {
 
 
     @GetMapping
-    public String list(Model model) {
-        model.addAttribute("movies", movieService.getAllMovie());
+    public String list(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String genre,
+            Model model
+    ) {
+        model.addAttribute("movies", movieService.search(title, genre));
+//        model.addAttribute("movies", movieService.getAllMovie());
+        model.addAttribute("title", title);
+        model.addAttribute("genre", genre);
         return "movies/list";
     }
 
@@ -45,5 +52,13 @@ public class MoviePageController {
         model.addAttribute("movie", movieService.getMovie(id));
         return "movies/edit";
     }
+
+
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable Integer id){
+        movieService.deleteById(id);
+        return "redirect:/movies";
+    }
+
 
 }
