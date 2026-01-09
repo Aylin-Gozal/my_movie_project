@@ -3,8 +3,10 @@ package com.movie.dea.controller;
 
 import com.movie.dea.entity.Movie;
 import com.movie.dea.service.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -40,7 +42,10 @@ public class MoviePageController {
 
 
     @PostMapping
-    public String save(@ModelAttribute Movie movie) {
+    public String save(@Valid @ModelAttribute Movie movie, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "movies/new";
+        }
         movieService.createMovie(movie);
         return "redirect:/movies";
     }
