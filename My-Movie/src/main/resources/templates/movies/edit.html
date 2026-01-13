@@ -9,7 +9,7 @@
 
 
 <!--<form th:action="@{/movies/save}" th:object="${movie}" method="post">-->
-<form th:action="@{/movies}" th:object="${movie}" method="post">
+<form th:action="@{/movies/{id}/edit(id=${movie.id})}" th:object="${movie}" method="post">
     <input type="hidden" th:field="*{id}" />
 
   <div>
@@ -37,7 +37,7 @@
     <input type="number" step="1" th:field="*{duration}" /> <br>
   </div>
 
-  <button href="/movies" class="btn">Back</button>
+  <a href="/movies" class="btn">Back</a>
   <button type="submit">Save</button>
 </form>
 

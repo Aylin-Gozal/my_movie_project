@@ -57,6 +57,23 @@ public class MoviePageController {
         model.addAttribute("movie", movieService.getMovie(id));
         return "movies/edit";
     }
+    @PostMapping("/{id}/edit")
+    public String update(@PathVariable Integer id,
+                         @Valid @ModelAttribute Movie movie,
+                         BindingResult bindingResult,
+                         Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("movie", movie); // keep the form values
+            return "movies/edit";
+        }
+
+        // call your existing service
+        movieService.updateMovie(id, movie);
+
+        return "redirect:/movies"; // redirect to the list after saving
+    }
+
+
 
 
     @PostMapping("/{id}/delete")

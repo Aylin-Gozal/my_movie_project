@@ -26,15 +26,15 @@ public class Movie {
     @NotNull(message = "Rating date is required!")
     private Double rating;
 
-    @NotBlank(message = "Duration is required!")
-     private String duration;
+    @NotNull(message = "Duration is required!")
+     private Integer duration;
 
     public Movie() {
 
     }
 
 
-    public Movie(Integer id, String title, String genre, LocalDate releaseDate, Double rating, String duration) {
+    public Movie(Integer id, String title, String genre, LocalDate releaseDate, Double rating, Integer duration) {
         this.id = id;
         this.title = title;
         this.genre = genre;
@@ -83,11 +83,11 @@ public class Movie {
         this.rating = rating;
     }
 
-    public String getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-     public void setDuration(String duration) {
+     public void setDuration(Integer duration) {
          this.duration = duration;
     }
 

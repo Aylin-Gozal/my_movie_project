@@ -46,14 +46,18 @@
     <td th:text="${movie.rating}"></td>
     <td th:text="${movie.duration}"></td>
     <td>
-      <button th:href="@{/movies/{id}/edit(id=${movie.id})}" class="edit">Edit</button>
+      <a th:href="@{/movies/{id}/edit(id=${movie.id})}" class="edit">Edit</a>
       <form th:action= "@{/movies/{id}/delete(id=${movie.id})}" method="post" style="display:inline">
-        <button  class="delete" type="submit" onclick="myFunction()">Delete</button>
-        <script>
-          function myFunction() {
-            alert("Are you sure you want to delete?");
-          }
-        </script>
+<!--        <button  class="delete" type="submit" onclick="myFunction()">Delete</button>-->
+<!--        <script>-->
+<!--          function myFunction() {-->
+<!--            alert("Are you sure you want to delete?");-->
+<!--          }-->
+<!--        </script>-->
+        <button class="delete" type="submit"
+                onclick="return confirm('Are you sure you want to delete?')">
+          Delete
+        </button>
       </form>
     </td>
   </tr>
