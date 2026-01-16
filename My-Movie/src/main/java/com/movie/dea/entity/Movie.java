@@ -14,24 +14,27 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Title is required!")
+  //  @NotBlank(message = "Title is required!")
     private String title;
 
-    @NotBlank(message = "Genre is required!")
+ //   @NotBlank(message = "Genre is required!")
     private String genre;
 
-    @NotNull(message = "Release date is required!")
+//    @NotNull(message = "Release date is required!")
     private LocalDate releaseDate;
 
-    @NotNull(message = "Rating date is required!")
+//    @NotNull(message = "Rating date is required!")
     private Double rating;
 
-    @NotNull(message = "Duration is required!")
+  //  @NotNull(message = "Duration is required!")
      private Integer duration;
 
     public Movie() {
 
     }
+
+
+
 
 
     public Movie(Integer id, String title, String genre, LocalDate releaseDate, Double rating, Integer duration) {

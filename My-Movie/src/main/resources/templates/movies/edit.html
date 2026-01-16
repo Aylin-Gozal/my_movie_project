@@ -7,34 +7,61 @@
 <body>
 <h1>Edit Movie</h1>
 
+<!--// /{id}/edit(id=${movie.id})-->
 
 <!--<form th:action="@{/movies/save}" th:object="${movie}" method="post">-->
-<form th:action="@{/movies/{id}/edit(id=${movie.id})}" th:object="${movie}" method="post">
+<form th:action="@{/movies}" th:object="${movieForm}" method="post">
     <input type="hidden" th:field="*{id}" />
 
   <div>
     Title
-    <input type="text" th:field="*{title}" /> <br>
+    <input type="text" th:field="*{title}" />
+    <div style="color:red"
+         th:if="${#fields.hasErrors('title')}"
+         th:errors="*{title}">
+
+    </div><br>
   </div>
+
 
   <div>
     Genre
-    <input type="text" th:field="*{genre}" /> <br>
+    <input type="text" th:field="*{genre}" />
+    <div style="color:red"
+         th:if="${#fields.hasErrors('title')}"
+         th:errors="*{title}">
+
+    </div><br>
   </div>
 
   <div>
     Release Date
-    <input type="date" th:field="*{releaseDate}" /> <br>
+    <input type="date" th:field="*{releaseDate}" />
+    <div style="color:red"
+         th:if="${#fields.hasErrors('title')}"
+         th:errors="*{title}">
+
+    </div><br>
   </div>
 
   <div>
     Rating
-    <input type="number" step="0.1" th:field="*{rating}" /> <br>
+    <input type="number" step="0.1" th:field="*{rating}" />
+    <div style="color:red"
+         th:if="${#fields.hasErrors('title')}"
+         th:errors="*{title}">
+
+    </div><br>
   </div>
 
   <div>
     Duration
-    <input type="number" step="1" th:field="*{duration}" /> <br>
+    <input type="number" step="1" th:field="*{duration}" />
+    <div style="color:red"
+         th:if="${#fields.hasErrors('title')}"
+         th:errors="*{title}">
+
+    </div><br>
   </div>
 
   <a href="/movies" class="btn">Back</a>

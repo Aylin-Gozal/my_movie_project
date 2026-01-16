@@ -1,6 +1,7 @@
 package com.movie.dea.controller;
 
 
+import com.movie.dea.dto.MovieForm;
 import com.movie.dea.entity.Movie;
 import com.movie.dea.service.MovieService;
 import jakarta.validation.Valid;
@@ -36,16 +37,34 @@ public class MoviePageController {
     //form of adding
     @GetMapping("/new")
     public String form(Model model) {
-        model.addAttribute("movie", new Movie());
+        model.addAttribute("movieForm", new MovieForm());
         return "movies/new";
     }
 
 
     @PostMapping
-    public String save(@Valid @ModelAttribute Movie movie, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute("movieForm") MovieForm form, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
-            return "movies/new";
+            return form.getId() == null ?  "movies/new" : "movies/edit";
         }
+
+
+        Movie movie;
+
+        if (form.getId() == null) {
+            movie = new Movie();
+        } else {
+            movie = movieService.getMovie(form.getId());
+        }
+
+        form.setId(movie.getId());
+        form.setTitle(movie.getTitle());
+        form.setGenre(movie.getGenre());
+        form.setReleaseDate(movie.getReleaseDate());
+        form.setRating(movie.getRating());
+        form.setDuration(movie.getDuration());
+
         movieService.createMovie(movie);
         return "redirect:/movies";
     }
@@ -54,7 +73,18 @@ public class MoviePageController {
     // form of update
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("movie", movieService.getMovie(id));
+
+
+        Movie movie = movieService.getMovie(id);
+        MovieForm form = new MovieForm();
+        form.setId(movie.getId());
+        form.setTitle(movie.getTitle());
+        form.setGenre(movie.getGenre());
+        form.setReleaseDate(movie.getReleaseDate());
+        form.setRating(movie.getRating());
+        form.setDuration(movie.getDuration());
+
+        model.addAttribute("movieForm", form);
         return "movies/edit";
     }
     @PostMapping("/{id}/edit")

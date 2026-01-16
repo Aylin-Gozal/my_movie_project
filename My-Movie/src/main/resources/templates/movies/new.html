@@ -6,7 +6,7 @@
 </head>
 <body>
      <h1>New Movie</h1>
-     <form th:action="@{/movies}" th:object="${movie}" method="post">
+     <form th:action="@{/movies}" th:object="${movieForm}" method="post">
        Title <input type="text" th:field="*{title}"  placeholder="Enter title*"/>
          <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div><br>
 
