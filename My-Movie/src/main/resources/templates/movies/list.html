@@ -13,6 +13,11 @@
 <a href="/movies/new" class="btn">Add Movie</a>
 
 <form method="get" action="/movies">
+  <a th:href="@{/movies(
+  sortBy='title',
+  direction=${direction == 'asc' ? 'desc' : 'asc'}
+  )}">Title</a>
+
   Searh by title:
   <input type="text" name="title" th:value="${title}" />
 

@@ -5,10 +5,13 @@ import com.movie.dea.dto.MovieForm;
 import com.movie.dea.entity.Movie;
 import com.movie.dea.service.MovieService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/movies")
@@ -25,10 +28,18 @@ public class MoviePageController {
     public String list(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String genre,
+            @RequestParam(defaultValue = "title") String sortby,
+            @RequestParam(defaultValue = "asc") String direction,
             Model model
     ) {
+        Sort sort = direction.equals("asc")
+                ? Sort.by(sortby).ascending()
+                : Sort.by(sortby).descending();
+        List<Movie> movies = movieService.getAllMovie(sort);
+
         model.addAttribute("movies", movieService.search(title, genre));
-//        model.addAttribute("movies", movieService.getAllMovie());
+        model.addAttribute("sortBy",sortby);
+        model.addAttribute("direction",direction);
         model.addAttribute("title", title);
         model.addAttribute("genre", genre);
         return "movies/list";
@@ -58,12 +69,12 @@ public class MoviePageController {
             movie = movieService.getMovie(form.getId());
         }
 
-        form.setId(movie.getId());
-        form.setTitle(movie.getTitle());
-        form.setGenre(movie.getGenre());
-        form.setReleaseDate(movie.getReleaseDate());
-        form.setRating(movie.getRating());
-        form.setDuration(movie.getDuration());
+        movie.setId(form.getId());
+        movie.setTitle(form.getTitle());
+        movie.setGenre(form.getGenre());
+        movie.setReleaseDate(form.getReleaseDate());
+        movie.setRating(form.getRating());
+        movie.setDuration(form.getDuration());
 
         movieService.createMovie(movie);
         return "redirect:/movies";

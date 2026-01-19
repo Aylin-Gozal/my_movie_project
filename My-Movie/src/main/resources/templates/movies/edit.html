@@ -28,8 +28,8 @@
     Genre
     <input type="text" th:field="*{genre}" />
     <div style="color:red"
-         th:if="${#fields.hasErrors('title')}"
-         th:errors="*{title}">
+         th:if="${#fields.hasErrors('genre')}"
+         th:errors="*{genre}">
 
     </div><br>
   </div>
@@ -38,8 +38,8 @@
     Release Date
     <input type="date" th:field="*{releaseDate}" />
     <div style="color:red"
-         th:if="${#fields.hasErrors('title')}"
-         th:errors="*{title}">
+         th:if="${#fields.hasErrors('releaseDate')}"
+         th:errors="*{releaseDate}">
 
     </div><br>
   </div>
@@ -48,8 +48,8 @@
     Rating
     <input type="number" step="0.1" th:field="*{rating}" />
     <div style="color:red"
-         th:if="${#fields.hasErrors('title')}"
-         th:errors="*{title}">
+         th:if="${#fields.hasErrors('rating')}"
+         th:errors="*{rating}">
 
     </div><br>
   </div>
@@ -58,8 +58,8 @@
     Duration
     <input type="number" step="1" th:field="*{duration}" />
     <div style="color:red"
-         th:if="${#fields.hasErrors('title')}"
-         th:errors="*{title}">
+         th:if="${#fields.hasErrors('duration')}"
+         th:errors="*{duration}">
 
     </div><br>
   </div>
