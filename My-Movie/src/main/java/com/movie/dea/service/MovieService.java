@@ -1,6 +1,7 @@
 package com.movie.dea.service;
 
 import com.movie.dea.entity.Movie;
+import com.movie.dea.exception.MovieNotFoundException;
 import com.movie.dea.repository.MovieRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +22,7 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public List<Movie> getAllMovie(Sort sort) {
+    public List<Movie> getAllMovie() {
         return movieRepository.findAll();
     }
 
@@ -47,7 +48,7 @@ public class MovieService {
 
     public Movie getMovie(@PathVariable Integer id) {
         return movieRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("No such a movie in db: " + id));
+                .orElseThrow(()-> new MovieNotFoundException("No such a movie in db: " + id));
     }
 
     public Movie updateMovie(@PathVariable Integer id, @RequestBody Movie updatedMovie){
@@ -77,7 +78,7 @@ public class MovieService {
         return movieRepository.findAll(pageable);
     }
 
-    public List<Movie> search(@PathVariable String title, @PathVariable String genre){
+    public List<Movie> search(@PathVariable String title, @PathVariable String genre, Sort sort){
         if (title != null && !title.isBlank()){
             return movieRepository.findByTitleContainingIgnoreCase(title);
         }
@@ -86,6 +87,6 @@ public class MovieService {
             return movieRepository.findByGenre(genre);
         }
 
-        return movieRepository.findAll();
+        return movieRepository.findAll(sort);
     }
 }

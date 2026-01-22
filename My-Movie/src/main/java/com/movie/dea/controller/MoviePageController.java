@@ -35,9 +35,9 @@ public class MoviePageController {
         Sort sort = direction.equals("asc")
                 ? Sort.by(sortby).ascending()
                 : Sort.by(sortby).descending();
-        List<Movie> movies = movieService.getAllMovie(sort);
+        List<Movie> movies = movieService.getAllMovie();
 
-        model.addAttribute("movies", movieService.search(title, genre));
+        model.addAttribute("movies", movieService.search(title, genre, sort));
         model.addAttribute("sortBy",sortby);
         model.addAttribute("direction",direction);
         model.addAttribute("title", title);
