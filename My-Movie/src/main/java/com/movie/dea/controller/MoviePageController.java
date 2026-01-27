@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -118,8 +119,16 @@ public class MoviePageController {
 
 
     @PostMapping("/{id}/delete")
-    public String delete(@PathVariable Integer id){
-        movieService.deleteById(id);
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes){
+        try{
+            movieService.deleteById(id);
+            redirectAttributes.addFlashAttribute
+                    ("success", "Movie deleted successfully");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute(
+                    "error", e.getMessage()
+            );
+        }
         return "redirect:/movies";
     }
 

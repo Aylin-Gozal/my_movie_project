@@ -64,12 +64,13 @@ public class MovieService {
                 .orElseThrow(() -> new RuntimeException("No such a movie with following ID: " + id));
     }
 
-    public String deleteById(@PathVariable Integer id) {
-        if(movieRepository.existsById(id)){
-            movieRepository.deleteById(id);
-            return "Movie deleted!";
+    public void deleteById(@PathVariable Integer id) {
+        if(!movieRepository.existsById(id)){
+            throw new MovieNotFoundException(
+                    "No such a movie with id: " + id
+            );
         }
-        return "Not found";
+        movieRepository.deleteById();
     }
 
 
