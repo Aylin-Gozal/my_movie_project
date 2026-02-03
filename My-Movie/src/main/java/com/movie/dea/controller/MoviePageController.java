@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/movies")
+//@Tag(name="Movies", description="Movie management API")
 public class MoviePageController {
     private final MovieService movieService;
 

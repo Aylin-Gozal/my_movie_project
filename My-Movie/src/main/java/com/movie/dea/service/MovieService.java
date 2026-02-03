@@ -70,7 +70,7 @@ public class MovieService {
                     "No such a movie with id: " + id
             );
         }
-        movieRepository.deleteById();
+        movieRepository.deleteById(id);
     }
 
 
