@@ -5,6 +5,7 @@ import com.movie.dea.dto.MovieForm;
 import com.movie.dea.entity.Movie;
 import com.movie.dea.service.MovieService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,16 +31,40 @@ public class MoviePageController {
     public String list(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String genre,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "title") String sortby,
             @RequestParam(defaultValue = "asc") String direction,
             Model model
     ) {
-        Sort sort = direction.equals("asc")
+
+        if(page<0){
+            page=0;
+        }
+//
+//        title = (title == null) ? "" : title;
+//        genre = (genre == null) ? "" : genre;
+//        sortby = (sortBy == null) ? "title" : sortBy;
+//        direction = (direction == null) ? "asc" : direction;
+
+
+        Sort sort = direction.equalsIgnoreCase("asc")
                 ? Sort.by(sortby).ascending()
                 : Sort.by(sortby).descending();
-        List<Movie> movies = movieService.getAllMovie();
+        Page<Movie> moviePage = movieService.searchPaginated(
+                title,
+                genre,
+                page,
+                size,
+                sort
+        );
 
-        model.addAttribute("movies", movieService.search(title, genre, sort));
+        model.addAttribute("movies", moviePage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", moviePage.getTotalPages());
+        model.addAttribute("size", size);
+
+       // model.addAttribute("movies", movieService.search(title, genre, sort));
         model.addAttribute("sortBy",sortby);
         model.addAttribute("direction",direction);
         model.addAttribute("title", title);

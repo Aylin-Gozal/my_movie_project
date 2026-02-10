@@ -29,4 +29,10 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
     Page<Movie>findAll(Pageable pageable);
 
+    Page<Movie> findByTitleAndGenreContainingIgnoreCase(
+            String title,
+            String genre,
+            Pageable pageable
+    );
+
 }

@@ -82,7 +82,49 @@
   </tr>
 </table>
 
+<p>
+  title: <span th:text="${title}"></span>
+  genre: <span th:text="${genre}"></span>
+  sortBy: <span th:text="${sortBy}"></span>
+  direction: <span th:text="${direction}"></span>
+</p>
 
+<div>
+  <a th:if="${currentPage  > 0}",
+  th:href="@{/movies(
+  page=${currentPage - 1},
+  size=${size},
+  genre=${genre},
+  sortBy=${sortBy},
+  direction=${direction})}">
+ <-
+  </a>
+
+  <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+    <a th:href="@{/moves(
+page=${i},
+size=${size},
+title=${title},
+genre=${title},
+sortBy=${sortBy},
+direction=${direction})}"
+    th:text="${i + 1}"
+    th:style="${i == currentPage} ? 'font-weight:bold' : ''">
+
+    </a>
+
+  </span>
+
+  <a th:if="${currentPage + 1 < totalPages}",
+     th:href="@{/movies(
+  page=${currentPage - 1},
+  size=${size},
+  genre=${genre},
+  sortBy=${sortBy},
+  direction=${direction})}">
+    ->
+  </a>
+</div>
 
 </body>
 
