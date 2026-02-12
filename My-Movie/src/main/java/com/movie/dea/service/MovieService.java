@@ -103,7 +103,7 @@ public class MovieService {
         String safeTitle = (title == null) ? "" : title;
         String safeGenre = (genre == null) ? "" : genre;
 
-        return movieRepository.findByTitleAndGenreContainingIgnoreCase(
+        return movieRepository.findByTitleContainingIgnoreCaseAndGenreContainingIgnoreCase(
                 safeTitle,
                 safeGenre,
                 pageable

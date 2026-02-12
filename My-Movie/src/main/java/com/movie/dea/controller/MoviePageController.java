@@ -51,7 +51,8 @@ public class MoviePageController {
         Sort sort = direction.equalsIgnoreCase("asc")
                 ? Sort.by(sortby).ascending()
                 : Sort.by(sortby).descending();
-        Page<Movie> moviePage = movieService.searchPaginated(
+
+        Page<Movie> movies = movieService.searchPaginated(
                 title,
                 genre,
                 page,
@@ -59,9 +60,21 @@ public class MoviePageController {
                 sort
         );
 
-        model.addAttribute("movies", moviePage.getContent());
+
+        if (page >= movies.getTotalPages() && movies.getTotalPages() > 0 ) {
+            page = movies.getTotalPages() - 1;
+            movies = movies = movieService.searchPaginated(
+                    title,
+                    genre,
+                    page,
+                    size,
+                    sort
+            );
+        }
+
+        model.addAttribute("movies", movies.getContent());
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", moviePage.getTotalPages());
+        model.addAttribute("totalPages", movies.getTotalPages());
         model.addAttribute("size", size);
 
        // model.addAttribute("movies", movieService.search(title, genre, sort));

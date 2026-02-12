@@ -1,7 +1,6 @@
 package com.movie.dea.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,18 +11,23 @@ public class MovieForm {
     private Integer id;
 
     @NotBlank(message = "Title is required!")
+    @Size(min=5, max=100, message = "Title must be 5-100 characters!")
     private String title;
 
     @NotBlank(message = "Genre is required!")
+    @Size(min=5, max=100, message = "Genre must be 5-100 characters!")
     private String genre;
 
     @NotNull(message = "Release date is required!")
     private LocalDate releaseDate;
 
     @NotNull(message = "Rating date is required!")
+    @DecimalMin(value = "1.0", message = "Rating must be at least 0")
+    @DecimalMax(value = "10.0", message = "Rating must be maximum 10")
     private Double rating;
 
     @NotNull(message = "Duration is required!")
+    @Size(min=2, max=3, message = "Duration must be 2-3 characters!")
     private Integer duration;
 
     public String getTitle() {
