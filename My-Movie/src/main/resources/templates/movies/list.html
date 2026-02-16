@@ -36,10 +36,10 @@
         th:text="${direction == 'asc' ? '˄' : '˅'}">
     </span></a> <br>
 
-  Searh by title:
+  Search by title:
   <input type="text" name="title" th:value="${title}" />
 
-  Searh by genre:
+  Search by genre:
   <input type="text" name="genre" th:value="${genre}" />
 
   <button type="submit">Search</button>
@@ -105,7 +105,7 @@
   </a>
 
   <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-    <a th:href="@{/moves(
+    <a th:href="@{/movies(
 page=${i},
 size=${size},
 title=${title},

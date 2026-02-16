@@ -29,6 +29,10 @@ public class Movie {
   //  @NotNull(message = "Duration is required!")
      private Integer duration;
 
+     @ManyToOne(fetch = FetchType.LAZY)
+     @JoinColumn(name = "director_id") // Foreign key (FK) ;; Primary Key (PK)
+     private Director director;
+
     public Movie() {
 
     }
@@ -44,6 +48,15 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.rating = rating;
         this.duration = duration;
+    }
+
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
     }
 
     public Integer getId() {

@@ -1,47 +1,39 @@
 package com.movie.dea.dto;
 
 import jakarta.validation.constraints.*;
-import lombok.Data;
 
 import java.time.LocalDate;
 
-@Data
-public class MovieForm {
-
+public class MovieDTO {
     private Integer id;
 
-    @NotBlank(message = "Title is required!")
-    @Size(min=5, max=100, message = "Title must be 5-100 characters!")
+//    @NotBlank(message = "Title is required!")
+//    @Size(min=5, max=100, message = "Title must be 5-100 characters!")
     private String title;
 
-    @NotBlank(message = "Genre is required!")
-    @Size(min=5, max=100, message = "Genre must be 5-100 characters!")
+//    @NotBlank(message = "Genre is required!")
+//    @Size(min=5, max=100, message = "Genre must be 5-100 characters!")
     private String genre;
 
-    @NotNull(message = "Release date is required!")
+//    @NotNull(message = "Release date is required!")
     private LocalDate releaseDate;
 
-    @NotNull(message = "Rating date is required!")
-    @DecimalMin(value = "1.0", message = "Rating must be at least 0")
-    @DecimalMax(value = "10.0", message = "Rating must be maximum 10")
+//    @NotNull(message = "Rating date is required!")
+//    @DecimalMin(value = "1.0", message = "Rating must be at least 0")
+//    @DecimalMax(value = "10.0", message = "Rating must be maximum 10")
     private Double rating;
 
-    @NotNull(message = "Duration is required!")
+//    @NotNull(message = "Duration is required!")
 
-    @Min(value=20, message = "Duration must be 2-3 characters!")
-    @Max(value=1000, message = "Duration must be 2-3 characters!")
+//    @Min(value=20, message = "Duration must be 2-3 characters!")
+//    @Max(value=1000, message = "Duration must be 2-3 characters!")
     private Integer duration;
 
-    @NotNull(message = "Shouldn't be null!")
+//    @NotNull(message = "Shouldn't be null!")
     private Integer directorId;
 
-    public String getTitle() {
-        return title;
-    }
+    private String directorName;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public Integer getId() {
         return id;
@@ -49,6 +41,14 @@ public class MovieForm {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getGenre() {
@@ -83,12 +83,19 @@ public class MovieForm {
         this.duration = duration;
     }
 
-
     public Integer getDirectorId() {
         return directorId;
     }
 
     public void setDirectorId(Integer directorId) {
         this.directorId = directorId;
+    }
+
+    public String getDirectorName() {
+        return directorName;
+    }
+
+    public void setDirectorName(String directorName) {
+        this.directorName = directorName;
     }
 }
